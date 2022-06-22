@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <apiVersion>55.0</apiVersion>
+    <choices>
+        <name>Choice1</name>
+        <choiceText>New Customer</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>New Customer</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Choice2</name>
+        <choiceText>Existing Customer - Upgrade</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Existing Customer - Upgrade</stringValue>
+        </value>
+    </choices>
+    <dynamicChoiceSets>
+        <name>LeadSource</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>LeadSource</picklistField>
+        <picklistObject>Opportunity</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>StageName</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>StageName</picklistField>
+        <picklistObject>Opportunity</picklistObject>
+    </dynamicChoiceSets>
+    <interviewLabel>New Opportunity {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>New Opportunity</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Opportunity</name>
+        <label>Create Opportunity</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <connector>
+            <targetReference>Success_Screen</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>AccountId</field>
+            <value>
+                <elementReference>Account_Name.recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CloseDate</field>
+            <value>
+                <elementReference>Close_Date</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <elementReference>Description</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>LeadSource</field>
+            <value>
+                <elementReference>Lead_Source</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>Opportunity_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>StageName</field>
+            <value>
+                <elementReference>Stage_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type</field>
+            <value>
+                <elementReference>Type</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <screens>
+        <name>Error_Screen</name>
+        <label>Error Screen</label>
+        <locationX>440</locationX>
+        <locationY>398</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Error_Message</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 14px; color: rgb(224, 13, 13);&quot;&gt;Something went wrong while saving the information. Here are more details about the same&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px; color: rgb(224, 13, 13);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Opportunity_Detail</name>
+        <label>Opportunity Detail</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Create_Opportunity</targetReference>
+        </connector>
+        <fields>
+            <name>Opportunity_Name</name>
+            <dataType>String</dataType>
+            <fieldText>Opportunity Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Account_Name</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>Opportunity</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>AccountId</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Account Name</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>recordId</elementReference>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>Close_Date</name>
+            <dataType>Date</dataType>
+            <fieldText>Close Date</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Opportunity_Name</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Stage_Name</name>
+            <choiceReferences>StageName</choiceReferences>
+            <dataType>String</dataType>
+            <defaultValue>
+                <stringValue>Prospecting</stringValue>
+            </defaultValue>
+            <fieldText>Stage Name</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Description</name>
+            <fieldText>Description</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Lead_Source</name>
+            <choiceReferences>LeadSource</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Lead Source</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Type</name>
+            <choiceReferences>Choice1</choiceReferences>
+            <choiceReferences>Choice2</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Type</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <nextOrFinishButtonLabel>Create Opportunity</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Success_Screen</name>
+        <label>Success Screen</label>
+        <locationX>176</locationX>
+        <locationY>398</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Success_Message</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(11, 224, 46); font-size: 14px;&quot;&gt;Your information has been saved successfully!&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Opportunity_Detail</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
