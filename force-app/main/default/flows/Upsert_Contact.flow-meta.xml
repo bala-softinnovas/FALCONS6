@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>55.0</apiVersion>
+    <assignments>
+        <name>Populate_Contact_Fields</name>
+        <label>Populate Contact Fields</label>
+        <locationX>138</locationX>
+        <locationY>758</locationY>
+        <assignmentItems>
+            <assignToReference>Iterate_Over_Matching_Contacts.Email</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Email.value</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Iterate_Over_Matching_Contacts.AccountId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Account_Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Iterate_Over_Matching_Contacts</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Consent_Given</name>
         <label>Consent Given?</label>
-        <locationX>270</locationX>
+        <locationX>380</locationX>
         <locationY>278</locationY>
         <defaultConnector>
             <targetReference>Create_Contact</targetReference>
@@ -29,8 +52,11 @@
     <decisions>
         <name>Contact_Exist</name>
         <label>Contact Exist?</label>
-        <locationX>138</locationX>
+        <locationX>182</locationX>
         <locationY>518</locationY>
+        <defaultConnector>
+            <targetReference>Create_Contact_0</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>Yes1</name>
@@ -75,6 +101,12 @@
         <locationY>638</locationY>
         <collectionReference>Get_Matching_Contacts</collectionReference>
         <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Populate_Contact_Fields</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Contacts</targetReference>
+        </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -98,8 +130,40 @@
     <recordCreates>
         <name>Create_Contact</name>
         <label>Create Contact</label>
-        <locationX>402</locationX>
+        <locationX>578</locationX>
         <locationY>398</locationY>
+        <inputAssignments>
+            <field>AccountId</field>
+            <value>
+                <elementReference>Account_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Email</field>
+            <value>
+                <elementReference>Email.value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>FirstName</field>
+            <value>
+                <elementReference>Contact_Name.firstName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>LastName</field>
+            <value>
+                <elementReference>Contact_Name.lastName</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_Contact_0</name>
+        <label>Create Contact</label>
+        <locationX>314</locationX>
+        <locationY>638</locationY>
         <inputAssignments>
             <field>AccountId</field>
             <value>
@@ -130,7 +194,7 @@
     <recordLookups>
         <name>Get_Matching_Contacts</name>
         <label>Get Matching Contacts</label>
-        <locationX>138</locationX>
+        <locationX>182</locationX>
         <locationY>398</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -155,10 +219,17 @@
         <object>Contact</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>Update_Contacts</name>
+        <label>Update Contacts</label>
+        <locationX>50</locationX>
+        <locationY>974</locationY>
+        <inputReference>Get_Matching_Contacts</inputReference>
+    </recordUpdates>
     <screens>
         <name>Contact_Detail</name>
         <label>Contact Detail</label>
-        <locationX>270</locationX>
+        <locationX>380</locationX>
         <locationY>158</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -233,11 +304,11 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>144</locationX>
+        <locationX>254</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Contact_Detail</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
 </Flow>
