@@ -43,7 +43,7 @@
     <decisions>
         <name>Consent_Given</name>
         <label>Consent Given?</label>
-        <locationX>380</locationX>
+        <locationX>710</locationX>
         <locationY>278</locationY>
         <defaultConnector>
             <targetReference>Create_Contact</targetReference>
@@ -68,7 +68,7 @@
     <decisions>
         <name>Contact_Exist</name>
         <label>Contact Exist?</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>518</locationY>
         <defaultConnector>
             <targetReference>Create_Contact_0</targetReference>
@@ -146,8 +146,14 @@
     <recordCreates>
         <name>Create_Contact</name>
         <label>Create Contact</label>
-        <locationX>578</locationX>
+        <locationX>1106</locationX>
         <locationY>398</locationY>
+        <connector>
+            <targetReference>Success_Screen</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>AccountId</field>
             <value>
@@ -178,8 +184,15 @@
     <recordCreates>
         <name>Create_Contact_0</name>
         <label>Create Contact</label>
-        <locationX>314</locationX>
+        <locationX>578</locationX>
         <locationY>638</locationY>
+        <connector>
+            <targetReference>Success_Screen</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>AccountId</field>
             <value>
@@ -210,7 +223,7 @@
     <recordLookups>
         <name>Get_Matching_Contacts</name>
         <label>Get Matching Contacts</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>398</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -240,12 +253,19 @@
         <label>Update Contacts</label>
         <locationX>50</locationX>
         <locationY>1094</locationY>
+        <connector>
+            <targetReference>Success_Screen</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputReference>ContactsToUpdate</inputReference>
     </recordUpdates>
     <screens>
         <name>Contact_Detail</name>
         <label>Contact Detail</label>
-        <locationX>380</locationX>
+        <locationX>710</locationX>
         <locationY>158</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -319,8 +339,40 @@
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
+    <screens>
+        <name>Error_Screen</name>
+        <label>Error Screen</label>
+        <locationX>1370</locationX>
+        <locationY>518</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Error_Message</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(221, 24, 24); font-size: 14px;&quot;&gt;An error occurred while saving the information. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(221, 24, 24); font-size: 14px;&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Success_Screen</name>
+        <label>Success Screen</label>
+        <locationX>710</locationX>
+        <locationY>1442</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Success_Message</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 14px; color: rgb(17, 218, 31);&quot;&gt;Information has been saved successfully!&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
     <start>
-        <locationX>254</locationX>
+        <locationX>584</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Contact_Detail</targetReference>
