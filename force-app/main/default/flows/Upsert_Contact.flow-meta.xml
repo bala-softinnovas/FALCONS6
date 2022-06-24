@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>55.0</apiVersion>
+    <decisions>
+        <name>Consent_Given</name>
+        <label>Consent Given?</label>
+        <locationX>270</locationX>
+        <locationY>278</locationY>
+        <defaultConnector>
+            <targetReference>Create_Contact</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Consent.value</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Matching_Contacts</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Contact_Exist</name>
+        <label>Contact Exist?</label>
+        <locationX>138</locationX>
+        <locationY>518</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Matching_Contacts</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Iterate_Over_Matching_Contacts</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
     <dynamicChoiceSets>
         <name>Accounts</name>
         <dataType>String</dataType>
@@ -21,6 +68,14 @@
     </dynamicChoiceSets>
     <interviewLabel>Upsert Contact {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Upsert Contact</label>
+    <loops>
+        <name>Iterate_Over_Matching_Contacts</name>
+        <label>Iterate Over Matching Contacts</label>
+        <locationX>50</locationX>
+        <locationY>638</locationY>
+        <collectionReference>Get_Matching_Contacts</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -40,14 +95,77 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Contact</name>
+        <label>Create Contact</label>
+        <locationX>402</locationX>
+        <locationY>398</locationY>
+        <inputAssignments>
+            <field>AccountId</field>
+            <value>
+                <elementReference>Account_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Email</field>
+            <value>
+                <elementReference>Email.value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>FirstName</field>
+            <value>
+                <elementReference>Contact_Name.firstName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>LastName</field>
+            <value>
+                <elementReference>Contact_Name.lastName</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_Matching_Contacts</name>
+        <label>Get Matching Contacts</label>
+        <locationX>138</locationX>
+        <locationY>398</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Contact_Exist</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>FirstName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Contact_Name.firstName</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>LastName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Contact_Name.lastName</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <screens>
         <name>Contact_Detail</name>
         <label>Contact Detail</label>
-        <locationX>176</locationX>
+        <locationX>270</locationX>
         <locationY>158</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Consent_Given</targetReference>
+        </connector>
         <fields>
             <name>Contact_Name</name>
             <extensionName>flowruntime:name</extensionName>
@@ -115,7 +233,7 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>50</locationX>
+        <locationX>144</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Contact_Detail</targetReference>
