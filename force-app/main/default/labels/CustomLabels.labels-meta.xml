@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Opportunity_Description</fullName>
+        <categories>Flow - &quot;Opportunity - Before Insert&quot;</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Opportunity Description</shortDescription>
+        <value>This is a new customer. Make sure we deal them well.</value>
+    </labels>
+</CustomLabels>

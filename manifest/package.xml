@@ -34,6 +34,10 @@
     </types>
     <types>
         <members>*</members>
+        <name>CustomLabel</name>
+    </types>
+    <types>
+        <members>*</members>
         <name>Flow</name>
     </types>
     <version>54.0</version>
