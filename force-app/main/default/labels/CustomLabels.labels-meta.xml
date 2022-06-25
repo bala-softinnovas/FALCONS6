@@ -8,4 +8,12 @@
         <shortDescription>Opportunity Description</shortDescription>
         <value>This is a new customer. Make sure we deal them well.</value>
     </labels>
+    <labels>
+        <fullName>Big_Opportunity</fullName>
+        <categories>Flow - &quot;Opportunity - After Insert/Update&quot;</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Big Opportunity</shortDescription>
+        <value>Success! We have won a big deal!</value>
+    </labels>
 </CustomLabels>
