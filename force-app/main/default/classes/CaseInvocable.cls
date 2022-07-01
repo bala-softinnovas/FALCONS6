@@ -9,7 +9,6 @@ public with sharing class CaseInvocable {
         Messaging.SingleEmailMessage msg = new Messaging.SingleEmailMessage();
         msg.setTargetObjectId(input.contactId);
         msg.setSaveAsActivity(true);
-        msg.setWhatId(input.contactId);
         msg.setSubject('Case Created: ' + input.caseNumber);
         msg.setPlainTextBody('Hello there, \n A case has been created for you to answer your query. '
                             + 'One of our customer representatives is going to reachout to you. Stay tuned!'
