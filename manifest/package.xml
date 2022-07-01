@@ -40,5 +40,9 @@
         <members>*</members>
         <name>Flow</name>
     </types>
+    <types>
+        <members>*</members>
+        <name>CustomObject</name>
+    </types>
     <version>54.0</version>
 </Package>

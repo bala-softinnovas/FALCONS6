@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Target_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Target Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Trigger</fullName>
+                <default>false</default>
+                <label>Trigger</label>
+            </value>
+            <value>
+                <fullName>Future</fullName>
+                <default>false</default>
+                <label>Future</label>
+            </value>
+            <value>
+                <fullName>Batch</fullName>
+                <default>false</default>
+                <label>Batch</label>
+            </value>
+            <value>
+                <fullName>Scheduler</fullName>
+                <default>false</default>
+                <label>Scheduler</label>
+            </value>
+            <value>
+                <fullName>Integration</fullName>
+                <default>false</default>
+                <label>Integration</label>
+            </value>
+            <value>
+                <fullName>Flow</fullName>
+                <default>false</default>
+                <label>Flow</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
