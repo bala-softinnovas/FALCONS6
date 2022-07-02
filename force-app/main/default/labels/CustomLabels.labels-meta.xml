@@ -16,4 +16,12 @@
         <shortDescription>Big Opportunity</shortDescription>
         <value>Success! We have won a big deal!</value>
     </labels>
+    <labels>
+        <fullName>Biotechnology_Description</fullName>
+        <categories>Flow - Account Updates</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Biotechnology_Description</shortDescription>
+        <value>This account belongs to biotechnology industry!</value>
+    </labels>
 </CustomLabels>

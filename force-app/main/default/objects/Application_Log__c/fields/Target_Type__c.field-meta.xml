@@ -40,6 +40,11 @@
                 <default>false</default>
                 <label>Flow</label>
             </value>
+            <value>
+                <fullName>Queue</fullName>
+                <default>false</default>
+                <label>Queue</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

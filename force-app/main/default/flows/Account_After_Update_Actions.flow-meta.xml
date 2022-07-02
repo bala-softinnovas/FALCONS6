@@ -7,6 +7,9 @@
         <locationY>455</locationY>
         <actionName>NewOpportunity</actionName>
         <actionType>quickAction</actionType>
+        <faultConnector>
+            <targetReference>Log_Error_0</targetReference>
+        </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>AccountId</name>
@@ -74,6 +77,9 @@
         <connector>
             <targetReference>New_Opportunity</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Log_Error</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>AccountId</field>
@@ -117,4 +123,78 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Log_Error</name>
+        <label>Log Error</label>
+        <locationX>704</locationX>
+        <locationY>455</locationY>
+        <flowName>Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>logType</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>message</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>stackTrace</name>
+            <value>
+                <elementReference>$Flow.InterviewGuid</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>targetName</name>
+            <value>
+                <stringValue>Account - After Updates</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>targetType</name>
+            <value>
+                <stringValue>Flow</stringValue>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Log_Error_0</name>
+        <label>Log Error</label>
+        <locationX>440</locationX>
+        <locationY>575</locationY>
+        <flowName>Create_Application_Log</flowName>
+        <inputAssignments>
+            <name>logType</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>message</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>stackTrace</name>
+            <value>
+                <elementReference>$Flow.InterviewGuid</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>targetName</name>
+            <value>
+                <stringValue>Account - After Updates</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>targetType</name>
+            <value>
+                <stringValue>Flow</stringValue>
+            </value>
+        </inputAssignments>
+    </subflows>
 </Flow>
