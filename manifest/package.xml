@@ -42,6 +42,7 @@
     </types>
     <types>
         <members>*</members>
+        <members>Contact</members>
         <name>CustomObject</name>
     </types>
     <version>54.0</version>
