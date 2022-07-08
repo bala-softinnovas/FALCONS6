@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="TRACK PROPERTY">
+        <div class="slds-var-m-around_medium">
+            <lightning-input
+                type="text"
+                label="Enter your city"
+                value={location.city}
+                onkeyup={handleChange}>
+            </lightning-input>
+            <div class="slds-var-m-top_small">Hey, I do live in {location.city}</div>
+        </div>
+    </lightning-card>
+</template>
