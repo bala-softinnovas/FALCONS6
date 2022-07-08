@@ -1,7 +1,7 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, track } from 'lwc';
 
 export default class TrackProperty extends LightningElement {
-    location = {
+    @track location = {
         city: "Houston",
         country: "United States",
         postalCode: "50021"
