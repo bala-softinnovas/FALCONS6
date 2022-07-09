@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="CONDITIONAL RENDERING 2">
+        <div class="slds-var-m-around_medium">
+            <lightning-button
+                variant="brand"
+                label="Show/Hide Content"
+                onclick={clickHandler}>
+            </lightning-button>
+            <template if:true={showContent}>
+                <div class="slds-var-m-top_small">
+                    Hello, I am learning LWC Conditional Rendering Concept. <br/>
+                    This is interesting.. <br/>
+                    Looking forward to learn a few more!!
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
