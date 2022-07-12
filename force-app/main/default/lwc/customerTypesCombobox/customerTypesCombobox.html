@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="COMBOBOX">
+        <div class="slds-var-m-around_medium">
+            <lightning-combobox
+                label="Select the customer type"
+                options={customerTypes}
+                value={selectedType}
+                onchange={changeHandler}>
+            </lightning-combobox>
+            <div>
+                Selected customer type: {selectedType}
+            </div>
+        </div>
+    </lightning-card>
+</template>
