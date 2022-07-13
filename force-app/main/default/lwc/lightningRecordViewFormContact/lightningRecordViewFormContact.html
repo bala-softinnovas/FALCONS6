@@ -1,5 +1,5 @@
 <template>
-    <lightning-card title="LIGHTNING RECORD VIEW FORM - ACCOUNT" icon-name="standard:account">
+    <lightning-card title="LIGHTNING RECORD VIEW FORM - CONTACT" icon-name="standard:contact">
         <div class="slds-var-m-around_medium">
             <lightning-record-view-form
                 object-api-name={objectName}
@@ -7,13 +7,14 @@
                 <div class="slds-grid slds-gutters">
                     <div class="slds-col">
                         <lightning-output-field field-name={fields.name}></lightning-output-field>
-                        <lightning-output-field field-name={fields.type}></lightning-output-field>
-                        <lightning-output-field field-name={fields.industry}></lightning-output-field>
+                        <lightning-output-field field-name={fields.account}></lightning-output-field>
+                        <lightning-output-field field-name={fields.email}></lightning-output-field>
+                        <lightning-output-field field-name={fields.owner}></lightning-output-field>
                     </div>
                     <div class="slds-col">
-                        <lightning-output-field field-name={fields.revnue}></lightning-output-field>
+                        <lightning-output-field field-name={fields.title}></lightning-output-field>
                         <lightning-output-field field-name={fields.phone}></lightning-output-field>
-                        <lightning-output-field field-name={fields.rating}></lightning-output-field>
+                        <lightning-output-field field-name={fields.mobile}></lightning-output-field>
                     </div>
                 </div>
             </lightning-record-view-form>
