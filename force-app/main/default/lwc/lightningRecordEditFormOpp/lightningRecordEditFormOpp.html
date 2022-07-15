@@ -1,29 +1,29 @@
 <template>
-    <lightning-card title="LIGHTNING RECORD EDIT FORM - CONTACT" icon-name="standard:contact">
+    <lightning-card title="LIGHTNING RECORD EDIT FORM - OPP" icon-name="standard:opportunity">
         <div class="slds-var-m-around_medium">
-            <lightning-record-edit-form 
+            <lightning-record-edit-form
                 record-id={recordId}
                 object-api-name={objectName}
                 onsuccess={successHandler}>
                 <lightning-messages></lightning-messages>
-                <div class="slds-grid slds-gutters">                    
+                <div class="slds-grid slds-gutters">
                     <div class="slds-col">
-                        <lightning-input-field field-name={fields.firstname}></lightning-input-field>
-                        <lightning-input-field field-name={fields.lastname}></lightning-input-field>
-                        <lightning-input-field field-name={fields.title}></lightning-input-field>
+                        <lightning-input-field field-name={fields.name}></lightning-input-field>
+                        <lightning-input-field field-name={fields.stage}></lightning-input-field>
+                        <lightning-input-field field-name={fields.type}></lightning-input-field>
                     </div>
                     <div class="slds-col">
+                        <lightning-input-field field-name={fields.amount}></lightning-input-field>
                         <lightning-input-field field-name={fields.account}></lightning-input-field>
-                        <lightning-input-field field-name={fields.department}></lightning-input-field>
-                        <lightning-input-field field-name={fields.email}></lightning-input-field>
+                        <lightning-input-field field-name={fields.closedate}></lightning-input-field>
                     </div>
                 </div>
                 <div class="slds-align_absolute-center">
                     <lightning-button
                         label="Cancel"
-                        class="slds-var-m-right_x-small"
                         variant="neutral"
-                        type="reset">
+                        type="reset"
+                        class="slds-var-m-right_x-small">
                     </lightning-button>
                     <lightning-button
                         label="Save"
