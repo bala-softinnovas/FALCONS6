@@ -1,4 +1,4 @@
-import { LightningElement } from 'lwc';
+import { api, LightningElement } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 import OPP_OBJECT from '@salesforce/schema/Opportunity';
@@ -10,7 +10,8 @@ import ACCOUNT_FIELD from '@salesforce/schema/Opportunity.AccountId';
 import CLOSEDATE_FIELD from '@salesforce/schema/Opportunity.CloseDate';
 
 export default class LightningRecordEditFormOpp extends LightningElement {
-    recordId = "0065h00000DcB5PAAV";
+    //recordId = "0065h00000DcB5PAAV";
+    @api recordId;
     objectName = OPP_OBJECT;
 
     fields = {
