@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="COUNTRIES">
+        <div class="slds-var-m-around_medium">
+            <template for:each={countries} for:item="country">
+                <div key={country}>
+                    {country}
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
