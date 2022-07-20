@@ -1,0 +1,57 @@
+<template>
+    <lightning-card title="CREATE RECORD - CONTACT" icon-name="standard:contact">
+        <div class="slds-var-m-around_medium">
+            <form class="contact">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                        <lightning-input
+                            type="text"
+                            label="First Name"
+                            name="FirstName"
+                            onchange={changeHandler}>
+                        </lightning-input>
+                        <lightning-input
+                            type="text"
+                            label="Last Name"
+                            name="LastName"
+                            onchange={changeHandler}>
+                        </lightning-input>
+                        <lightning-input
+                            type="email"
+                            label="Email"
+                            name="Email"
+                            onchange={changeHandler}>
+                        </lightning-input>
+                    </div>
+                    <div class="slds-col">
+                        <lightning-input
+                            type="tel"
+                            label="Phone"
+                            name="Phone"
+                            onchange={changeHandler}>
+                        </lightning-input>
+                        <lightning-input
+                            type="text"
+                            label="Title"
+                            name="Title"
+                            onchange={changeHandler}>
+                        </lightning-input>
+                        <lightning-input
+                            type="text"
+                            label="Department"
+                            name="Department"
+                            onchange={changeHandler}>
+                        </lightning-input>
+                    </div>
+                </div>
+                <div class="slds-align_absolute-center slds-var-m-top_small">
+                    <lightning-button
+                        label="Create Contact"
+                        variant="brand"
+                        onclick={createContact}>
+                    </lightning-button>
+                </div>
+            </form>
+        </div>
+    </lightning-card>
+</template>

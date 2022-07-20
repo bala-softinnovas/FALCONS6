@@ -1,4 +1,4 @@
-import { getRecord } from 'lightning/uiRecordApi';
+import { getFieldValue, getRecord } from 'lightning/uiRecordApi';
 import { LightningElement, wire } from 'lwc';
 
 import NAME_FIELD from '@salesforce/schema/Account.Name';
@@ -19,10 +19,16 @@ export default class GetRecordAccount extends LightningElement {
     accountHandler({data, error}) {
         if(data) {
             console.log(data);
+            /*
             this.name = data.fields.Name.value;
             this.type = data.fields.Type.value;
             this.industry = data.fields.Industry.value;
             this.phone = data.fields.Phone.value;
+            */
+           this.name = getFieldValue(data, NAME_FIELD);
+           this.type = getFieldValue(data, TYPE_FIELD);
+           this.industry = getFieldValue(data, INDUSTRY_FIELD);
+           this.phone = getFieldValue(data, PHONE_FIELD);
         }
         if(error) {
             console.error(error);
