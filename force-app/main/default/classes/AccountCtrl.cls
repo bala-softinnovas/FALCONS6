@@ -17,4 +17,13 @@ public with sharing class AccountCtrl {
                                 LIMIT 4];
         return accounts;
     }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Account> getAccountsByIndustry(String industry){
+        List<Account> accounts = [SELECT Name, Type, Industry, AnnualRevenue
+                                FROM Account
+                                WHERE Industry = :industry
+                                WITH SECURITY_ENFORCED];
+        return accounts;
+    }
 }
