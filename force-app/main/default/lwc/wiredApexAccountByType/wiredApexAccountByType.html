@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="WIRED APEX" icon-name="standard:account">
+        <div class="slds-var-m-around_medium">
+            <div class="slds-grid slds-gutters">
+                <template if:true={accounts}>
+                    <template for:each={accounts} for:item="acc">
+                        <div key={acc.Id} class="slds-col slds-box slds-var-m-right_x-small">
+                            {acc.Name} <br/>
+                            {acc.Industry} <br/>
+                            {acc.AnnualRevenue}
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>
