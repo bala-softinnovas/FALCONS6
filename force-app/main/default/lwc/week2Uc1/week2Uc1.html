@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="WEEK2 UC1">
+        <div class="slds-var-m-around_medium">
+            <lightning-input
+                type="text"
+                name="Name"
+                value={oppName}
+                onchange={changeHandler}>
+            </lightning-input>
+            <lightning-combobox
+                options={stageOptions}
+                name="Stage"
+                value={selectedStage}
+                onchange={changeHandler}>
+            </lightning-combobox>
+            <lightning-combobox
+                options={typeOptions}
+                name="Type"
+                value={selectedType}
+                onchange={changeHandler}>
+            </lightning-combobox>
+            <div class="slds-var-m-top_small">
+                Thanks for entering the correct information. 
+                You have chosen the Name = {oppName} 
+                Type = {selectedType} 
+                Stage = {selectedStage}
+            </div>
+        </div>
+    </lightning-card>
+</template>
