@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="STUDENT DETAIL">
+        <div class="slds-var-m-around_medium">
+            <lightning-input
+                label="Student Name"
+                type="text"
+                value={stdName}
+                onchange={changeHandler}>
+            </lightning-input>
+            <lightning-input
+                label="Student Class"
+                type="number"
+                value={stdClass}
+                onchange={changeHandler}>
+            </lightning-input>
+            <c-display-info 
+                student-name={stdName}
+                student-class={stdClass}>
+            </c-display-info>
+        </div>
+    </lightning-card>
+</template>
