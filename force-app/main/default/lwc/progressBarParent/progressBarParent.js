@@ -5,4 +5,8 @@ export default class ProgressBarParent extends LightningElement {
     changeHandler(event) {
         this.value = event.target.value;
     }
+    resetprogressBar() {
+        this.value = 50;
+        this.template.querySelector('c-progress-bar').resetProgress();
+    }
 }

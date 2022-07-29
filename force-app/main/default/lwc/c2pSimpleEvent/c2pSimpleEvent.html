@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="C2P SIMPLE EVENT">
+        <div class="slds-var-m-around_medium">
+            <div class="slds-var-m-bottom_small">
+                This is child to parent communication approach using simple event.
+                Click on the button below to see modal details.
+            </div>
+            <lightning-button
+                label="Show Modal"
+                variant="brand"
+                onclick={clickHandler}>
+            </lightning-button>
+            <template if:true={showModal}>
+                <c-modal-component 
+                    onclose={childHandler}>
+                </c-modal-component>
+            </template>
+        </div>
+    </lightning-card>
+</template>

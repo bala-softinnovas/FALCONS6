@@ -1,11 +1,24 @@
 <template>
     <lightning-card title="PROGRESS BAR">
         <div class="slds-var-m-around_medium">
-            <lightning-input
-                type="number"
-                value={value}
-                onchange={changeHandler}>
-            </lightning-input>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_9-of-12">
+                    <lightning-input
+                        type="number"
+                        variant="label-hidden"
+                        value={value}
+                        onchange={changeHandler}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_3-of-12">
+                    <lightning-button  
+                        variant="brand"
+                        label="Reset Progress"
+                        onclick={resetprogressBar}>
+                    </lightning-button>
+                </div>
+            </div>
+            
             <div class="slds-var-m-top_small">
                 <c-progress-bar 
                     progress-value={value}>
